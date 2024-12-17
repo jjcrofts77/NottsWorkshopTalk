@@ -899,6 +899,234 @@
 			<!-- ################################################### -->  
 			
 			<!-- Larger Network Structures -->
+			<!-- Cycle on 6 Nodes -->
+			<section>
+			
+				<section align="left">
+					<h2>Bifurcation Structure for a Ring of Neural Masses</h2>
+					
+					<p>To better understand the impact of network structure on the synchronous solutions studied thus far we considered a simple ring 
+					network architecture</p>
+					
+					<div class="row">
+						<div class="column left" align="center">					
+							<div align="center">
+								<img src="images/Cycle.png" width="300" height="auto">	
+							</div>
+						</div>				
+						
+						<div class="column right" align="left">		
+							<p>With adjacency matrix given by</p>						
+							\[
+							A = \begin{pmatrix}
+								0&1&0&\cdots&1\\
+								1&0&1&\ddots&\vdots\\
+								\vdots&\vdots&\ddots&\ddots&0\\
+								0&0&\cdots&0&1\\
+								1&0&\cdots&1&0
+								\end{pmatrix}
+							\]
+							<p>In our experiments $n=6$ for computational ease</p>
+						</div>								
+					</div>										
+						
+					<aside class="notes">
+					<ul>
+						<li>We perform a numerical biurcation analysis on 6 nodes and consider a more empirical approach for larger networks later on</li>
+					</ul>
+					</aside>
+				</section>
+				
+				<section align="left">
+					<h3>Stability of the homogeneous steady state</h3>
+					<p>In the case of a ring network stability is governed by the following equation</p>
+					\[
+						\mathrm{det} \left[ I_n\otimes\left( \lambda I_2 - A - Be^{-\lambda\tau}\right) - \left(K+K^{n-1}\right)\otimes \left(C_\epsilon e^{-\lambda\rho}\right)\right] = 0,
+					\]
+					<p>where $A, B$ are the same as for the self-coupled node, </p>
+					\[
+						C_\epsilon = \begin{pmatrix}\frac{1}{2}\epsilon\beta u^*(1-u^*)&0\\0&0\end{pmatrix},
+					\]
+					<p>and</p>					
+					\[
+						K = \begin{pmatrix}
+							0&1&0&\cdots&0\\
+							0&0&\ddots&\ddots&\vdots\\
+							\vdots&\vdots&\ddots&\ddots&0\\
+							0&0&\cdots&0&1\\
+							1&0&\cdots&0&0
+							\end{pmatrix}
+					\]					
+					<p>is the basic circulant permutation matrix</p>
+					
+					<aside class="notes">
+					<ul>
+						<li>Due to the structure of the ring network we can write down the its characteristic equation using the Kronecker product and the basic circulant permutation matrix</li><br>
+						<li>K^{n-1} = K^T so picks out the structure of the ring network</li>
+					</ul>
+					</aside>
+				</section>
+				
+				<section align="left">
+				
+					<ul>
+						<li>Due to the bock circulant structure of the above matrix, we can employ a discrete Fourier transform to diagonalise it, 
+						leading to the following factorised from of the characteristic equation:
+					
+						<div align="center">
+							<textBox touch-action="none">       
+							<p>
+							\[
+								\prod_{k=1}^n \mathrm{det}\left[\lambda I_2 - A - Be^{-\lambda \tau} - \left(e^{i\phi_k} + e^{i(n-1)\phi_k}\right)C_\epsilon e^{-\lambda \rho}\right] = 0,
+							\]
+							</p>
+							</textBox>
+						</div>
+					
+					
+						where $\displaystyle \phi_k = 2\pi k/n, k=1,\ldots, n$.</li><br>
+						
+						<li>This equation can be solved numerically to determine the stability properties of the steady state solution of the full system as a function of the parameters $\rho$ and $\epsilon$</li><br>
+						<li>Next we explore the bifurcation structure of a ring network on $n=6$ nodes</li>
+					</ul>
+				
+					<aside class="notes">
+					<ul>
+						<li>Our matrix takes the form aK^0+bK^1+cK^{n-1} so ...</li>
+					</ul>
+					</aside>
+				</section>
+				
+			</section>	
+			<!-- ################################################### -->  
+			
+			
+			<!-- Synch manifold dynamics  -->		
+			<section>
+				<h2>Dynamics on a Six Node Ring</h2>
+		
+				<br>
+				<img
+				style="margin:0px;padding:0px;align:center"
+				height="250"
+				data-src="images/AllHopfLoopsRing6.png">	
+		        
+				<section style="margin-top:15%" align="left`">		
+					<ul>
+						<li>The onset of oscillatory solutions </li><br>						
+						<li>Three additional <em>asynchronous</em> AH branches for a 6 node ring &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>			<br>			
+						<li>Solid/dashed lines are asynchronous/synchronous AH branches</li><br>
+					</ul>			
+					
+					<aside class="notes">
+					<ul>
+						<li>Three additional HB curves</li><br>
+						<li>For the ring we find that a new branch appears for every two nodes added to the network - we haven't looked any further into why this is the case</li><br>
+						<li>Certainly it is the case that for larger networks we observe more HB curves but this pattern is not confirmed in other networks</li>
+					</ul>
+					</aside>
+				</section>
+		
+				<section style="margin-top:17.5%">
+					<leftSide style="width:50%;text-align:left">			
+						<br><br>
+						<img
+						style="margin:0px;padding:0px;align:center"
+						height="160"
+						data-src="images/AntiPhase.png">	
+						<img
+						style="margin:0px;padding:0px;align:center"
+						height="160"
+						data-src="images/SynchSol.png">	
+					</leftSide>
+			
+					<rightSide style="width:50%">				
+						<br>
+						<ul>
+							<li>Crossing the dashed/solid line results in asynchronous/synchronous solutions</li><br>
+							<li>Black/Red lines denote excitable/inhibitory variables </li><br>
+							<li>Close to the first AH crossing these are the only two observed behaviours</li>
+						</ul>			
+					</rightSide>
+					
+					<aside class="notes">
+					<ul>
+						<li>Importantly, the type of solution we obtain depends upon whether we cross the synch or asycnh Hopf curves</li><br>
+						<li>Close to the Hopf branches we see only one of two behaviours, initially at least</li>
+					</ul>
+					</aside>
+				</section>
+		
+				<section style="margin-top:17.5%">
+					<leftSide style="width:50%;text-align:center">			
+						
+						<br><br>
+						<img
+						style="margin:0px;padding:0px;align:center"
+						height="250"
+						data-src="images/LE6RingPlot.png">	
+					
+					</leftSide>
+			
+					<rightSide style="width:50%">				
+						<br>
+						<ul>
+							<li>Plot of maximal LE as a function of $(\rho, \epsilon)$</li><br>
+							<li>Hopf branches superimposed</li><br>
+							<li>Solid and dotted white lines denote torus branches</li><br>
+							<li>Weak chaotic boundaries</li>
+						</ul>			
+					</rightSide>
+					
+					<aside class="notes">
+					<ul>
+						<li>The circle and triangle are parameter values for the asynch and synch solution shown over page</li><br>
+						<li>Here we plot the maximal LE exponent for the 6 node ring</li><br>
+						<li>We have superimposed the Hopf curves and have also added torus branches</li><br>
+						<li>Points of note:
+						<ul>
+							<li>weak chaotic borders separating synch and asynch behaviour for weak coupling</li>
+							<li>Due to torus breakdown i.e. PO loses stability at TB then ...</li>
+							<li>Complicated behaviour in the Hopf branch zone and at crossings of TB branches</li>
+							<li>Not all bifurcation curves present i.e. picture incomplete</li>
+						</ul>
+						</li>
+					</ul>
+					</aside>
+				</section>
+				
+				<section style="margin-top:20%">
+					<leftSide style="width:50%;text-align:center">			
+						
+						<br><br>
+						<img
+						style="margin:0px;padding:0px;align:center"
+						height="180"
+						data-src="images/LE6RingPlot.png">	
+						
+						<p style="font-size:22px;color:black"><strong>Four different ICs for $(\rho, \epsilon) = (1.025, 0.205)$</strong></p>
+					
+					</leftSide>
+			
+					<rightSide style="width:50%;text-align:center">				
+						<img
+						style="margin:0px;padding:0px;align:center"
+						height="325"
+						data-src="images/MultiStab.png">	
+					</rightSide>
+					
+					<aside class="notes">
+					<ul>
+						<li>Regions of multistability to branch crossings</li><br>
+						<li>e.g. single IC four different solutions</li>
+					</ul>
+					</aside>
+				</section>
+	
+			</section>
+			<!-- ################################################### -->  
+				
+			<!-- ################################################### -->  	
 			<section>
 				
 				<section align="left">
